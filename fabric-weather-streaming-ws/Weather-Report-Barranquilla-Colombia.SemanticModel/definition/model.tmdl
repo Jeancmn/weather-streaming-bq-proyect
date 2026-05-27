@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-NZ
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["history_weather_data","Latest_weather_data"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table history_weather_data
+ref table DateTableTemplate_5c495f70-cecd-4e86-8e74-1c9659884aad
+ref table LocalDateTable_4c19ecad-667d-4d6b-89c8-5e4666e4b050
+ref table LocalDateTable_59d60b68-444d-44d5-9631-3a2925b99710
+ref table Latest_weather_data
+ref table LocalDateTable_eeb0add3-a3de-46eb-bba2-143c3d715f31
+ref table LocalDateTable_82755a3c-51fb-40fd-bd31-65fbc801b96f
+ref table LocalDateTable_266e7d27-c46d-4d8b-94dd-5d86ef2e71af
+ref table LocalDateTable_7046ce85-8a2e-426d-b4ef-7010fbba7589
+ref table LocalDateTable_5db7c41a-adae-4122-9fc4-91ce7dbad208
+
+ref cultureInfo en-US
+

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventhouse",
+    "displayName": "weather-eventhouse-bq",
+    "description": "weather-eventhouse-bq"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d509b0af-84d2-8e3a-4b7a-4c028b8370e0"
+  }
+}

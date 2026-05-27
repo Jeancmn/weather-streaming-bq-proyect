@@ -1,0 +1,70 @@
+[
+  {
+    "uniqueIdentifier": "16e3d35e-bcbc-4800-9c79-a02d2cb956f2",
+    "payload": {
+      "name": "for-alerts",
+      "description": "Container Description",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "54fef025-30fa-4958-adca-7f62ce4c9373",
+    "payload": {
+      "name": "weather-eventhouse-bq evento",
+      "runSettings": {
+        "executionIntervalInSeconds": 60
+      },
+      "query": {
+        "queryString": "['weather-table-bq']\n| where alerts != '[]' // Filter for records where an alert condition exists\n| extend AlertValue = tostring(alerts) // Extract as a string\n| summarize LastTriggered = max(EventProcessedUtcTime) by AlertValue\n| join kind=leftanti (\n    ['weather-table-bq']\n    | where alerts != '[]'\n    | extend AlertValue = tostring(alerts) // Extract as a string\n    | summarize LastTriggered = max(EventProcessedUtcTime) by AlertValue\n    | where LastTriggered < ago(1m)\n) on AlertValue"
+      },
+      "eventhouseItem": {
+        "itemId": "e8f945a0-cbbe-a5a6-4815-618a5bd638ab",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "8d3719e6-896b-4702-b46a-66b67df5766d",
+        "querySetId": "34ed899b-473a-4d1d-bb6f-b8d4f097bd7c",
+        "queryId": "400e37f2-b0ce-4839-b2ea-ace5a76510ba"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "16e3d35e-bcbc-4800-9c79-a02d2cb956f2"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "6960fcd0-bfed-499d-a798-ecab6ff178c8",
+    "payload": {
+      "name": "weather-eventhouse-bq evento",
+      "parentContainer": {
+        "targetUniqueIdentifier": "16e3d35e-bcbc-4800-9c79-a02d2cb956f2"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"49120ae6-6d64-4f1c-96a0-6414fb9eb43b\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"54fef025-30fa-4958-adca-7f62ce4c9373\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.2.5\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "e0df2a5c-a1ee-4faf-9244-e03d5d044452",
+    "payload": {
+      "name": "Weather Alert",
+      "parentContainer": {
+        "targetUniqueIdentifier": "16e3d35e-bcbc-4800-9c79-a02d2cb956f2"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.5\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"e4cafd4f-5627-4b0f-b88b-eda080eae772\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"6960fcd0-bfed-499d-a798-ecab6ff178c8\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"7a4334c9-813b-4928-abb3-e9c6b2d9433f\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"5e6c32ee-9d96-4f63-a788-1158004f441e\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"jmangone@cuc.edu.co\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Weather Alert\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"A weather alert has been received in Barranquilla\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"AlertValue\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"AlertValue\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"LastTriggered\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"LastTriggered\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

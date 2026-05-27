@@ -1,0 +1,411 @@
+table Latest_weather_data
+	lineageTag: 3b808fd7-a8df-4bc7-ad1c-bd329d48cd01
+
+	column name
+		dataType: string
+		lineageTag: b8ba3c92-0159-4abb-b05c-66c226c479ca
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: ebcfb739-c0dd-46ff-bb47-05976fd6357e
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: b3728ef0-8dee-42a1-b68f-7401127a9c4e
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: 1e99813a-082c-437f-8c2d-a430f6efdb3b
+		dataCategory: Latitude
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 7d0bf4fd-0a60-4eca-a6ad-ccebc9a1754b
+		dataCategory: Longitude
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column localtime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 56b7e018-a0b9-4e09-8129-3194e333e872
+		summarizeBy: none
+		sourceColumn: localtime
+
+		variation Variation
+			isDefault
+			relationship: fe41106c-7c02-4dec-95b9-965c252ea0e3
+			defaultHierarchy: LocalDateTable_5db7c41a-adae-4122-9fc4-91ce7dbad208.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column temp_c
+		dataType: double
+		lineageTag: df7e86f8-cae9-4c94-bf4c-c39df082b33b
+		summarizeBy: sum
+		sourceColumn: temp_c
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_day
+		dataType: int64
+		formatString: 0
+		lineageTag: ffa52b97-27db-418a-85b9-1a9d70b9a087
+		summarizeBy: sum
+		sourceColumn: is_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column condition_text
+		dataType: string
+		lineageTag: addb2713-1f55-4ccc-b7ca-f18778ecbc27
+		summarizeBy: none
+		sourceColumn: condition_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column condition_icon
+		dataType: string
+		lineageTag: f5474f0a-5e8d-4b51-a6ec-80bd07f03642
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: condition_icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column wind_kph
+		dataType: double
+		lineageTag: ba7ef109-2d20-4261-a1d2-ca5a1a3e2b99
+		summarizeBy: sum
+		sourceColumn: wind_kph
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wind_degree
+		dataType: int64
+		formatString: 0
+		lineageTag: a71b911f-0ce9-4e47-be16-fdebb45b0b46
+		summarizeBy: sum
+		sourceColumn: wind_degree
+
+		annotation SummarizationSetBy = Automatic
+
+	column wind_dir
+		dataType: string
+		lineageTag: 2fd3dd4b-4c07-49e3-987e-518ebb684751
+		summarizeBy: none
+		sourceColumn: wind_dir
+
+		annotation SummarizationSetBy = Automatic
+
+	column pressure_in
+		dataType: double
+		lineageTag: 423c82ac-bb78-4393-b416-1550adbf12ce
+		summarizeBy: sum
+		sourceColumn: pressure_in
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column precip_in
+		dataType: double
+		formatString: 0
+		lineageTag: 4c6408e5-86ea-4c84-90d4-9bde204cec71
+		summarizeBy: sum
+		sourceColumn: precip_in
+
+		annotation SummarizationSetBy = Automatic
+
+	column humidity
+		dataType: int64
+		formatString: 0
+		lineageTag: e9328406-3857-4156-b942-72259aeffa88
+		summarizeBy: sum
+		sourceColumn: humidity
+
+		annotation SummarizationSetBy = Automatic
+
+	column cloud
+		dataType: int64
+		formatString: 0
+		lineageTag: bf0e3877-fd52-4c47-aaff-6c77c3ac00e9
+		summarizeBy: sum
+		sourceColumn: cloud
+
+		annotation SummarizationSetBy = Automatic
+
+	column feelslike_c
+		dataType: double
+		formatString: 0
+		lineageTag: 27bbf718-9cc4-496f-9cc3-a36b79b473e0
+		summarizeBy: sum
+		sourceColumn: feelslike_c
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column uv
+		dataType: double
+		formatString: 0
+		lineageTag: 233cb782-486a-4e99-9e9c-abf2f7ccf339
+		summarizeBy: sum
+		sourceColumn: uv
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.co'
+		dataType: string
+		lineageTag: d4da345e-190a-4f2a-9497-3fa219e7d2b9
+		summarizeBy: none
+		sourceColumn: air_quality.co
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.no2'
+		dataType: string
+		lineageTag: 5927c196-e859-4f92-965d-3ec5fdef4382
+		summarizeBy: none
+		sourceColumn: air_quality.no2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.o3'
+		dataType: string
+		lineageTag: 014b3b8e-fde6-4935-83eb-63373cb37e0a
+		summarizeBy: none
+		sourceColumn: air_quality.o3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.so2'
+		dataType: string
+		lineageTag: 63a78d97-551b-4098-8f11-d0895c83d5e6
+		summarizeBy: none
+		sourceColumn: air_quality.so2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.pm2_5'
+		dataType: string
+		lineageTag: e496352e-76ab-4117-a319-94fa15ca1e84
+		summarizeBy: none
+		sourceColumn: air_quality.pm2_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.pm10'
+		dataType: string
+		lineageTag: 1a92cd72-2ad1-439d-adad-94dc46c7bcac
+		summarizeBy: none
+		sourceColumn: air_quality.pm10
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.us-epa-index'
+		dataType: string
+		lineageTag: 8448667e-e62b-49c3-a931-1374f13f8cc7
+		summarizeBy: none
+		sourceColumn: air_quality.us-epa-index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'air_quality.gb-defra-index'
+		dataType: int64
+		formatString: 0
+		lineageTag: 81a3d6e3-c26f-4fa7-92aa-2b331abb0c13
+		summarizeBy: sum
+		sourceColumn: air_quality.gb-defra-index
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column alerts
+		dataType: string
+		lineageTag: 84464ef8-40e3-47d2-ad2d-ce34e46a01c1
+		summarizeBy: none
+		sourceColumn: alerts
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'forecast.date'
+		dataType: string
+		lineageTag: 3337ab50-ab63-4d36-a092-facb8cda4b63
+		summarizeBy: none
+		sourceColumn: forecast.date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'forecast.maxtemp_c'
+		dataType: string
+		lineageTag: bbf184f4-3c53-4dc0-bdb6-971e1dc8533c
+		summarizeBy: none
+		sourceColumn: forecast.maxtemp_c
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'forecast.mintemp_c'
+		dataType: string
+		lineageTag: 483fa68d-79ec-4041-8208-d6da55c9e8a7
+		summarizeBy: none
+		sourceColumn: forecast.mintemp_c
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'forecast.condition'
+		dataType: string
+		lineageTag: 126808e0-c446-4fd9-8f0a-c7dc4eac4ae3
+		summarizeBy: none
+		sourceColumn: forecast.condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventProcessedUtcTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc27418c-2b20-47f1-8c77-4099f4df2b2b
+		summarizeBy: none
+		sourceColumn: EventProcessedUtcTime
+
+		variation Variation
+			isDefault
+			relationship: 15521a2a-4375-4f6e-8568-6da50fb68738
+			defaultHierarchy: LocalDateTable_eeb0add3-a3de-46eb-bba2-143c3d715f31.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column PartitionId
+		dataType: int64
+		formatString: 0
+		lineageTag: 126c6d75-a8b1-4dfe-b5fe-2611ed632aa6
+		summarizeBy: count
+		sourceColumn: PartitionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventEnqueuedUtcTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 23474afe-fa03-491d-9300-74ff560b9524
+		summarizeBy: none
+		sourceColumn: EventEnqueuedUtcTime
+
+		variation Variation
+			isDefault
+			relationship: 1cc3cc70-e196-4db2-a2cd-7f65271e57ea
+			defaultHierarchy: LocalDateTable_82755a3c-51fb-40fd-bd31-65fbc801b96f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column airquality_band = ```
+			
+			SWITCH(
+			    Latest_weather_data[air_quality.gb-defra-index],
+			    1, "Low",
+			    2, "Low",
+			    3, "Low",
+			    4, "Moderate",
+			    5, "Moderate",
+			    6, "Moderate",
+			    7, "High",
+			    8, "High",
+			    9, "High",
+			    10, "Very High",
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 11f45f67-3502-4ef8-ada5-9c1fe98bcc5c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdatedAlerts = ```
+			
+			IF(
+			    ISBLANK('Latest_weather_data'[alerts]) || Latest_weather_data[alerts] = "[List]", 
+			    "No Warnings", 
+			    Latest_weather_data[alerts]
+			)
+			
+			```
+		lineageTag: 9763f44f-337d-4caf-99bd-9e42311766e7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConvertedDate =
+			
+			DATE(
+			    VALUE(MID(Latest_weather_data[forecast.date], 1, 4)),  // Extract Year
+			    VALUE(MID(Latest_weather_data[forecast.date], 6, 2)),  // Extract Month
+			    VALUE(MID(Latest_weather_data[forecast.date], 9, 2))   // Extract Day
+			)
+		dataType: dateTime
+		formatString: d mmmm yyyy
+		lineageTag: a3ea21d8-8491-45ab-8c82-60dd9988b4d1
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 257efa70-73f5-4940-a305-815fd2d04d57
+			defaultHierarchy: LocalDateTable_266e7d27-c46d-4d8b-94dd-5d86ef2e71af.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition Latest_weather_data-51b9ba46-fd58-40a0-98e1-e1a554f62ed2 = m
+		mode: import
+		source =
+				let
+				    Source = AzureDataExplorer.Contents("https://trd-5uxdtybf2f09n783bs.z2.kusto.fabric.microsoft.com", "weather-eventhouse-bq", "[""weather-table-bq""]", [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"localtime", type datetime}}),
+				    LatestDate = List.Max(#"Changed Type"[localtime]),
+				    FilteredTable = Table.SelectRows(#"Changed Type", each [localtime] = LatestDate),
+				    LatestDate2 = List.Max(FilteredTable[EventProcessedUtcTime]),
+				    FilteredTable2 = Table.SelectRows(#"Changed Type", each [EventProcessedUtcTime] = LatestDate2),
+				    #"Expanded forecast" = Table.ExpandListColumn(FilteredTable2, "forecast"),
+				    #"Expanded forecast1" = Table.ExpandRecordColumn(#"Expanded forecast", "forecast", {"date", "maxtemp_c", "mintemp_c", "condition"}, {"forecast.date", "forecast.maxtemp_c", "forecast.mintemp_c", "forecast.condition"}),
+				    #"Expanded air_quality" = Table.ExpandRecordColumn(#"Expanded forecast1", "air_quality", {"co", "no2", "o3", "so2", "pm2_5", "pm10", "us-epa-index", "gb-defra-index"}, {"air_quality.co", "air_quality.no2", "air_quality.o3", "air_quality.so2", "air_quality.pm2_5", "air_quality.pm10", "air_quality.us-epa-index", "air_quality.gb-defra-index"}),
+				    #"Expanded alerts" = Table.ExpandListColumn(#"Expanded air_quality", "alerts")
+				in
+				    #"Expanded alerts"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

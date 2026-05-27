@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "weather-eventstream-bq"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "234ef4ea-4e5e-af2d-475d-547eefa293ff"
+  }
+}

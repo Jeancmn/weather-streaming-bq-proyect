@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+      - main 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+  persistCredentials: true
+  fetchDepth: 0
+
+- script: |
+    git config --global user.email "$(GIT_USER_EMAIL)"
+    git config --global user.name "Azure DevOps Pipeline"
+
+    git remote remove github 2>/dev/null || true
+    git remote add github https://$(GITHUB_TOKEN)@github.com/Jeancmn/weather-streaming-bq-proyect.git
+
+    git push github HEAD:refs/heads/main --force
+  displayName: 'Sincronizar espejo hacia GitHub'
+  env:
+    GITHUB_TOKEN: $(GITHUB_TOKEN)

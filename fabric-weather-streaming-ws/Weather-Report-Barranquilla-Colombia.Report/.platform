@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Weather-Report-Barranquilla-Colombia"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "06e6920b-007e-93af-4968-2c6d1c0c6c7f"
+  }
+}

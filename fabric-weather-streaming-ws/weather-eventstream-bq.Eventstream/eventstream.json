@@ -1,0 +1,297 @@
+{
+  "sources": [
+    {
+      "id": "a648e62d-0dc8-4b0c-9a7c-c8fbcd1931d5",
+      "name": "AzEventHub",
+      "type": "AzureEventHub",
+      "properties": {
+        "dataConnectionId": "bdd72c83-709e-40f0-a6a1-875430bdb2b0",
+        "consumerGroupName": "$Default",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "2f49b8f1-d4f8-472f-8643-d06adf992cd4",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "e8f945a0-cbbe-a5a6-4815-618a5bd638ab",
+        "databaseName": "weather-eventhouse-bq",
+        "tableName": "weather-table-bq",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "weather-eventstream-bq-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "weather-eventstream-bq-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "name",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "region",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "country",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lat",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "lon",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "localtime",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "temp_c",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "is_day",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "condition_text",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "condition_icon",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "wind_kph",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "wind_degree",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "wind_dir",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "pressure_in",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "precip_in",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "humidity",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "cloud",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "feelslike_c",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "uv",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "air_quality",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "co",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "no2",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "o3",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "so2",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "pm2_5",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "pm10",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "us-epa-index",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "gb-defra-index",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "alerts",
+                "type": "Array",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "forecast",
+                "type": "Array",
+                "fields": null,
+                "items": {
+                  "name": null,
+                  "type": "Record",
+                  "fields": [
+                    {
+                      "name": "date",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "maxtemp_c",
+                      "type": "Float",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "mintemp_c",
+                      "type": "Float",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "condition",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    }
+                  ],
+                  "items": null
+                }
+              },
+              {
+                "name": "EventProcessedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "PartitionId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventEnqueuedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "04b07f97-8395-4168-abce-426006ce5de2",
+      "name": "weather-eventstream-bq-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "AzEventHub"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

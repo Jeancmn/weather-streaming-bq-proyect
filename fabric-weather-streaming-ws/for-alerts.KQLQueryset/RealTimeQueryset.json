@@ -1,0 +1,21 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "206e171d-a672-4677-81cc-f6b7678257b2",
+        "clusterUri": "https://trd-5uxdtybf2f09n783bs.z2.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "weather-eventhouse-bq"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "400e37f2-b0ce-4839-b2ea-ace5a76510ba",
+        "content": "['weather-table-bq']\n| where alerts != '[]' // Filter for records where an alert condition exists\n| extend AlertValue = tostring(alerts) // Extract as a string\n| summarize LastTriggered = max(EventProcessedUtcTime) by AlertValue\n| join kind=leftanti (\n    ['weather-table-bq']\n    | where alerts != '[]'\n    | extend AlertValue = tostring(alerts) // Extract as a string\n    | summarize LastTriggered = max(EventProcessedUtcTime) by AlertValue\n    | where LastTriggered < ago(1m)\n) on AlertValue\n",
+        "title": "Tab",
+        "dataSourceId": "206e171d-a672-4677-81cc-f6b7678257b2"
+      }
+    ]
+  }
+}
