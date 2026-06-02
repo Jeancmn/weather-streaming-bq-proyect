@@ -760,10 +760,17 @@ The Fabric Workspace contains a two-page Power BI report connected to the KQL Se
 
 ### Report Pages
 
-| Page | Content |
-|---|---|
-| Page 1 | Real-time current conditions — temperature, humidity, wind, UV, AQI gauges |
-| Page 2 | Historical trend analysis — temperature and precipitation over time |
+#### Page 1 — Live Conditions
+
+Real-time snapshot of current meteorological conditions: temperature, feels-like temperature, wind speed and direction, humidity, UV index, and sky condition.
+
+![Live Conditions](assets/Live%20Conditions.png)
+
+#### Page 2 — Air Quality & Atmosphere
+
+Atmospheric and air quality indicators: CO, NO₂, O₃, SO₂, PM2.5, PM10, pressure, precipitation, and cloud cover — including EPA and DEFRA indexes.
+
+![Air Quality & Atmosphere](assets/Air%20Quality%20%26%20Atmosphere.png)
 
 The Semantic Model uses **DirectLake** mode, which reads data directly from the Eventhouse Delta tables without import, providing near-real-time refresh latency.
 
