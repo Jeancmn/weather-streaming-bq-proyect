@@ -369,7 +369,7 @@ The following sequence describes what happens from data origin to dashboard on e
 
 ## 7. Component Reference
 
-### 7.1 Azure Function App (`wather-streaming-function-app/`)
+### 7.1 Azure Function App (`weather-streaming-function-app/`)
 
 | File | Description |
 |---|---|
@@ -402,7 +402,7 @@ The notebook `weather-streaming-notebook.py` was used during **development and t
 4. **Streaming with Spark Structured Streaming** — uses `spark.readStream` (rate source) with `foreachBatch` to send events continuously.
 5. **Throttled streaming** — sends one event every 30 seconds using a time-delta guard inside `foreachBatch`.
 
-> **Note:** The Databricks notebook is not used in production. The Azure Function App (`wather-streaming-function-app/`) is the production ingestion component. The notebook is retained as reference and for local testing without deploying the Function App.
+> **Note:** The Databricks notebook is not used in production. The Azure Function App (`weather-streaming-function-app/`) is the production ingestion component. The notebook is retained as reference and for local testing without deploying the Function App.
 
 ### 7.3 Microsoft Fabric Eventstream (`weather-eventstream-bq.Eventstream`)
 
@@ -599,7 +599,7 @@ This file is excluded from source control via `.gitignore`. For local testing, s
 **Option A — Azure Functions Core Tools (recommended for development)**
 
 ```bash
-cd wather-streaming-function-app
+cd weather-streaming-function-app
 
 # Install dependencies
 pip install -r requirements.txt
@@ -687,12 +687,12 @@ To automate Function App deployment, add the following stage after the mirror sy
 
 - script: |
     pip install --target=".python_packages/lib/site-packages" -r requirements.txt
-  workingDirectory: wather-streaming-function-app
+  workingDirectory: weather-streaming-function-app
   displayName: 'Install Python dependencies'
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'wather-streaming-function-app'
+    rootFolderOrFile: 'weather-streaming-function-app'
     includeRootFolder: false
     archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
 
@@ -835,7 +835,7 @@ weather-streaming-bq/
 ├── azure-pipelines.yml                         # CI/CD pipeline — triggers on main, mirrors to GitHub
 ├── README.md                                   # This document
 │
-├── wather-streaming-function-app/              # Azure Function App (production ingestion)
+├── weather-streaming-function-app/              # Azure Function App (production ingestion)
 │   ├── function_app.py                         # Timer-triggered function — fetches weather & publishes to Event Hub
 │   ├── host.json                               # Azure Functions runtime config (v2, Extension Bundle 4.x)
 │   ├── local.settings.json                     # Local dev settings — NOT committed to production
