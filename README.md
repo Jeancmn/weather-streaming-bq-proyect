@@ -433,7 +433,7 @@ The KQL engine supports sub-second analytical queries over the entire historical
 | Execution interval | 60 seconds |
 | KQL source | `weather-eventhouse-bq` → `weather-table-bq` |
 | Trigger condition | New rows where `alerts != '[]'` not seen in the last minute |
-| Action | Email to `` — Subject: "Weather Alert" |
+| Action | Email to the configured recipient — Subject: "Weather Alert" |
 | Email body fields | `AlertValue`, `LastTriggered` |
 
 **Alert detection KQL query:**
@@ -659,7 +659,7 @@ steps:
   fetchDepth: 0
 
 - script: |
-    git config --global user.email ""
+    git config --global user.email "$(GIT_USER_EMAIL)"
     git config --global user.name "Azure DevOps Pipeline"
     git remote add github https://$(GITHUB_TOKEN)@github.com/Jeancmn/weather-streaming-bq-proyect.git
     git push github HEAD:refs/heads/main --force
@@ -877,7 +877,7 @@ weather-streaming-bq/
 
 | Name | Role | Contact |
 |---|---|---|
-| Jean Carlos Mangones | Data Engineer |  |
+| Jean Carlos Mangones | Data Engineer | — |
 
 ---
 
