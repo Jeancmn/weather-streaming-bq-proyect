@@ -120,6 +120,12 @@ Weather events in the Caribbean coast of Colombia (high UV index, tropical storm
 
 This pipeline follows the **Lambda-lite / Kappa** pattern — there is a single streaming path with no separate batch layer. All historical and real-time queries are served by the same KQL Database, which is optimized for time-series analytics and supports sub-second query latency over millions of rows.
 
+### Fabric Workspace Overview
+
+All Microsoft Fabric artifacts deployed for this project — Eventhouse, Eventstream, Report, Semantic Model, and Reflex — live under a single workspace.
+
+![Fabric Workspace](assets/Fabric%20workspace.png)
+
 ---
 
 ## 3. Technology Stack
@@ -365,6 +371,10 @@ The following sequence describes what happens from data origin to dashboard on e
 
 **End-to-end latency:** typically under 5 seconds from API call to data available in the KQL Database.
 
+The screenshot below shows the Azure Event Hub Data Explorer with a real event payload arriving from the Function App — the full flattened JSON document with weather, air quality, alerts, and forecast is visible as a single message.
+
+![Event Hub Data Explorer](assets/Event%20Hub%20-%20Data%20Explorer.png)
+
 ---
 
 ## 7. Component Reference
@@ -392,6 +402,14 @@ azure-keyvault-secrets
 requests
 ```
 
+The Function App `fp-weather-streaming01` runs on Linux (East US 2) with a Flex Consumption plan. The `weatherapifunction` timer trigger is shown as **Enabled** in the portal.
+
+![Azure Function App Overview](assets/Azure%20Fuction%20Overview.png)
+
+The function code is deployed and editable directly from the Azure Portal under **Code + Test**.
+
+![Function App Code](assets/weatherapifunction%20code.png)
+
 ### 7.2 Databricks Notebook (`databricks-weather-streaming-notebooks/`)
 
 The notebook `weather-streaming-notebook.py` was used during **development and testing** of the pipeline. It documents the incremental approach taken to build the solution:
@@ -417,6 +435,10 @@ The notebook `weather-streaming-notebook.py` was used during **development and t
 | Ingestion mode | Processed Ingestion |
 | Target table | `weather-table-bq` |
 
+The canvas below shows the complete Eventstream topology — source (`AzEventHub`), default stream, and destination (`Eventhouse`) — all in **Active** state, with the data preview panel displaying live ingested rows.
+
+![Eventstream Canvas](assets/Event%20Stream.png)
+
 ### 7.4 Microsoft Fabric Eventhouse / KQL Database (`weather-eventhouse-bq`)
 
 - **Engine:** Azure Data Explorer (Kusto) embedded in Microsoft Fabric.
@@ -425,6 +447,10 @@ The notebook `weather-streaming-notebook.py` was used during **development and t
 - **Primary table:** `weather-table-bq`
 
 The KQL engine supports sub-second analytical queries over the entire historical dataset, making it suitable for both real-time dashboards and historical trend analysis.
+
+The screenshot below shows the `weather-table-bq` table with the Data Activity Tracker (ingestion volume over time), data preview with live rows, and storage metrics.
+
+![Eventhouse KQL Database](assets/Event%20House.png)
 
 ### 7.5 Reflex (Data Activator) — `Weather Alerts.Reflex`
 
@@ -453,6 +479,14 @@ The KQL engine supports sub-second analytical queries over the entire historical
 ```
 
 This query uses a left-anti join to return only alert values that appeared **within the last minute** and have not been seen before — effectively deduplicating repeated alerts and triggering the email exactly once per unique alert event.
+
+The KQL Queryset below shows the alert detection query running against the `weather-table-bq` table in the Fabric KQL editor.
+
+![Alert Detection KQL Query](assets/Alert%20Code.png)
+
+The Reflex rule `Weather Alert` is shown below in **Running** state, with the email action configured — subject, headline, and context fields (`AlertValue`, `LastTriggered`) visible in the definition panel.
+
+![Weather Alerts Reflex Rule](assets/Weather%20Alerts.png)
 
 ---
 
@@ -560,6 +594,10 @@ This query uses a left-anti join to return only alert values that appeared **wit
 |---|---|---|
 | `weatherapikey` | Function App, Databricks Notebook | WeatherAPI.com API key |
 | `eventhub-connection-string` | Databricks Notebook | Event Hub namespace connection string (for notebook testing only) |
+
+Both secrets are stored in `kv-weather-streaming01` with **Enabled** status and no expiration date, as shown below. Note that the values are never exposed — only the names and metadata are visible.
+
+![Key Vault Secrets](assets/Key%20Vault%20Secrets.png)
 
 ### Function App — Important Configuration Values
 
