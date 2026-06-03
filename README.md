@@ -714,6 +714,14 @@ steps:
 
 To add the variable in Azure DevOps: **Pipelines → Edit → Variables → New Variable → check "Keep this value secret"**.
 
+The screenshot below shows the pipeline run history in Azure DevOps — every commit to `main` triggers a successful run that mirrors the code to GitHub.
+
+![Azure DevOps Pipeline Runs](assets/Azure%20Devops%20pipeline.png)
+
+The Repos view shows the full repository structure with the README rendered, reflecting the latest committed state of the project.
+
+![Azure DevOps Repository](assets/Azure%20Devops%20Repo.png)
+
 ### Recommended Extension — Function App Deployment Stage
 
 To automate Function App deployment, add the following stage after the mirror sync step:
