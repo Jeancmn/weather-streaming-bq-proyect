@@ -116,6 +116,10 @@ Weather events in the Caribbean coast of Colombia (high UV index, tropical storm
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+### Architecture Diagram
+
+![Architecture Diagram](assets/Architecture%20Diagram.png)
+
 ### Architecture Pattern
 
 This pipeline follows the **Lambda-lite / Kappa** pattern — there is a single streaming path with no separate batch layer. All historical and real-time queries are served by the same KQL Database, which is optimized for time-series analytics and supports sub-second query latency over millions of rows.
@@ -420,7 +424,7 @@ The notebook `weather-streaming-notebook.py` was used during **development and t
 4. **Streaming with Spark Structured Streaming** — uses `spark.readStream` (rate source) with `foreachBatch` to send events continuously.
 5. **Throttled streaming** — sends one event every 30 seconds using a time-delta guard inside `foreachBatch`.
 
-> **Note:** The Databricks notebook is not used in production. The Azure Function App (`weather-streaming-function-app/`) is the production ingestion component. The notebook is retained as reference and for local testing without deploying the Function App.
+> **Why Databricks was not used in production:** Running a Databricks cluster 24/7 solely to poll an API and forward events to Event Hub is cost-prohibitive — a cluster must remain active to process the stream, incurring continuous compute charges regardless of data volume. This project requires no complex transformations, joins, or Spark-specific capabilities that would justify that cost. Azure Functions is the right tool here: it is event-driven, scales to zero when idle, and includes **1 million free executions per month on any Azure subscription** — making the ingestion layer effectively free at this polling cadence. The Databricks notebook is retained in the repository as a development and testing artifact, as shown in the DEV / TESTING layer of the architecture diagram.
 
 ### 7.3 Microsoft Fabric Eventstream (`weather-eventstream-bq.Eventstream`)
 
